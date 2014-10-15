@@ -25,14 +25,24 @@ setup(name='xsgs.policy',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'my315ok.portlet.fetchouterhtml',
+          'my315ok.products',
+          'collective.monkeypatcher',
+          'z3c.jbot',
+          'five.globalrequest',
+          'five.grok',          
+          'collective.diazotheme.bootstrap',          
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+          'test': ['plone.app.testing',]
+      },          
       entry_points="""
       # -*- Entry points: -*-
 
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      setup_requires=["PasteScript"],
-      paster_plugins=["ZopeSkel"],
+#      setup_requires=["PasteScript"],
+#      paster_plugins=["ZopeSkel"],
       )

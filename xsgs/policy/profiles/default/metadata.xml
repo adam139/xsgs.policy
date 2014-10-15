@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
 <metadata>
   <version>1000</version>
+    <dependencies> 
+        <dependency>profile-my315ok.portlet.fetchouterhtml:default</dependency>
+        <dependency>profile-my315ok.products:default</dependency>
+        <dependency>profile-collective.diazotheme.bootstrap:default</dependency>                         
+    </dependencies>  
 </metadata>
