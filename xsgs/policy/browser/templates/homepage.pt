@@ -64,6 +64,15 @@
 	<script type="text/javascript" src="http://images.315ok.org/ajaxfetchimg.min.js"></script>
 	<script  src="http://images.315ok.org/jquery.swfobj.min.js"></script>  
 	<script tal:content="structure python:view.outputjs()"></script>
+	<script>
+		$(".mobile-entry").mouseover(function(){
+  $(".sn-qrcode").show();
+}); 
+	$(".mobile-entry").mouseout(function(){
+  $(".sn-qrcode").hide();
+}); 
+	
+	</script>
 	<script tal:content="structure python:view.swf_js_settings(swf='http://images.315ok.org/xsgs998/main.swf',height=223,width=1160)"></script>
 </div>
     </tal:main-macro>
