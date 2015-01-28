@@ -47,7 +47,7 @@
             <span class="label label-primary">工程案例</span>
        		</a>
     				</h4>
-    				<div id="topid"   tal:content="structure python: view.rollresult(collection='gongchanli')">
+    				<div id="topid2"   tal:content="structure python: view.rollresult(collection='gongchanli')">
     				<!--<div id="outhtml" tal:content="structure python: view.outhtmlresult()">outer</div> -->	
     				</div>
          </div>         
