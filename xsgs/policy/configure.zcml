@@ -16,6 +16,12 @@
       description="Installs the xsgs.policy package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
+  <genericsetup:registerProfile
+      name="registerless"
+      title="xsgs.policy register less"
+      directory="profiles/registerless"
+      description="register xsgs.policy less sources"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
    <include package=".browser"/> 
 </configure>

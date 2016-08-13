@@ -4,19 +4,14 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"      
-      i18n:domain="collective.conference">        
+      i18n:domain="xsgs.policy">        
 
 <body>	
-<metal:main fill-slot="homepage">
+<metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
     	 <div id="homepage" class="container homepage">
-    	 	 <div id="portal-top"            
-            tal:condition="not:ajax_load">
-					<div class="cell width-full position-0">
-            <div tal:replace="structure provider:plone.portaltop" />
-					</div>
-       </div>
-       <div class="row .hidden-xs">
+
+       <div class="row .hidden-sm">
        	<div class="col_md_12">       			
 					<div id="swfLocid" tal:attributes="id python:view.swf_locid()">here will be replaced by swf</div>	    		
        	</div>

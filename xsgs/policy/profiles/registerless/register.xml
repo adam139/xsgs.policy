@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<registry>
+<!-- Resources -->
+  <records prefix="plone.resources/jqswfobj"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++xsgs.policy/jquery.swfobj.min.js</value>
+      <value key="deps">jquery</value>
+ </records>
+  <records prefix="plone.resources/roll"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++xtshzz.policy/roll.js</value>
+      <value key="deps">jquery</value>
+ </records>
+  <records prefix="plone.resources/ajax-fetchimg"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++xtgl.policy/ajaximg.js</value>
+      <value key="deps">jquery</value>
+ </records> 
+  <records prefix="plone.resources/bootstrap-carousel"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++plone++static/components/bootstrap/js/carousel.js</value>
+      <value key="css">
+        <element>++plone++static/components/bootstrap/less/carousel.less</element>
+      </value>
+      <value key="deps">jquery</value>
+ </records> 
+<records prefix="plone.resources/xsgs-homepage"
+          interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="js">++resource++xsgs.policy/homepage-custom.js</value>          
+    <value key="css">
+      <element>++resource++xsgs.policy/homepage.css</element>
+    </value>
+    <value key="deps">jquery</value>
+</records>  
+  <!-- Bundles -->
+  <records prefix="plone.bundles/xsgs-legacy"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>    
+    <value key="depends">plone</value>
+    <value key="jscompilation">++resource++xsgs.policy/legacy-custom.js</value>   
+    <value key="last_compilation">2015-08-14 00:00:00</value>
+    <value key="compile">False</value>
+    <value key="enabled">True</value>
+  </records>
+</registry>

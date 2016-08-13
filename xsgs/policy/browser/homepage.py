@@ -1,57 +1,24 @@
 #-*- coding: UTF-8 -*-
-from five import grok
-import json
-import datetime
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 
-from plone.memoize.instance import memoize
-
-from zope.i18n.interfaces import ITranslationDomain
-from zope.component import queryUtility
-from zope.component import getMultiAdapter
-
-from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFPlone.resources import add_resource_on_request
 from Products.Five.browser import BrowserView
-from plone.app.layout.navigation.interfaces import INavigationRoot
-
-from my315ok.socialorgnization import _
 
 from my315ok.products.product import Iproduct
-
 from plone.memoize.instance import memoize
-
-fmt = '%Y/%m/%d %H:%M:%S'
-import re
-from datetime import datetime,timedelta
-import socket
-import time
-import urllib2
-try:
-    from BeautifulSoup import BeautifulSoup,SoupStrainer
-except:
-    print "ERROR: could not import BeautifulSoup Python module"
-    print
-    print "You can download BeautifulSoup from the Python Cheese Shop at"
-    print "http://cheeseshop.python.org/pypi/BeautifulSoup/"
-    print "or directly from http://www.crummy.com/software/BeautifulSoup/"
-    print
-    raise
-from my315ok.portlet.fetchouterhtml.fetchouterportlet import FetchOutWebPage
-from collective.diazotheme.bootstrap.browser.homepage import HomepageView as baseview 
-
+from collective.diazotheme.bootstrap.browser.homepage import HomepageView as baseview
 from Products.CMFCore import permissions
 from xsgs.policy.browser.interfaces import IThemeSpecific 
-grok.templatedir('templates') 
+
 
 
 class FrontpageView(baseview):
      
-    grok.context(ISiteRoot)
-    grok.template('homepage')
-    grok.name('index.html')
-    grok.layer(IThemeSpecific)
-    grok.require('zope2.View')      
+    def __init__(self,context, request):
+        # Each view instance receives context and request as construction parameters
+        self.context = context
+        self.request = request
+        add_resource_on_request(self.request, 'xsgs-homepage')     
 
     
     def carouselid(self):
@@ -151,32 +118,71 @@ class FrontpageView(baseview):
                 
               
 # roll zone
+    @memoize
+    def rollresult(self,collection=None,limit=7,words=15):
+        """return roll zone html"""
+        
+        if collection == None:
+            braindata = self.catalog()({'portal_type':'News Item',
+                                    'b_start':0,
+                                    'b_size':limit,
+                             'sort_order': 'reverse',
+                             'sort_on': 'created'})
+        else:
 
+            queries = {'portal_type':'Collection','id':collection}
+            ctobj = self.catalog()(queries)
+
+            if ctobj is not None:
+                # pass on batching hints to the catalog
+                braindata = ctobj[0].getObject().queryCatalog(batch=True)
+            else:           
+                braindata = None
+                      
+        outhtml = """<div class="%s" data-pause="1000" data-step="1" data-speed="30" data-direction="up">
+            <ul class="rolltext">
+        """ % (self.rollwrapperclass())
+
+        brainnum = len(braindata)
+        if brainnum == 0 : return "roll zone"
+        for i in range(brainnum):
+            objurl = braindata[i].getURL()
+            fulltitle = braindata[i].Title
+            if type(fulltitle) != type(""):fulltitle = fulltitle()
+#             import pdb
+#             pdb.set_trace()
+            objtitle = self.cropTitle(fulltitle, words)
+            modifydate = braindata[i].created.strftime('%Y-%m-%d')
+            
+            out = """<li class="rollitem">
+            <span>
+            <a href="%(objurl)s" title="%(fulltitle)s">%(title)s</a>
+            </span>
+            <span class="portletItemDetails">%(date)s</span></li>""" % dict(objurl=objurl,                                                                            
+                                            title=objtitle,
+                                            fulltitle = fulltitle,
+                                            date= modifydate)
+                                               
+            outhtml = ''.join([outhtml,out])   #quick concat string
+        outhtml = "%s</ul></div>" % outhtml
+        return outhtml
 
         
     def rollheader(self):
         return u"新闻"
     
     def rollmore(self):
-        return "http://www.xsgs998.com/news/"
-    
-              
+        return "http://www.xsgs998.com/news/"               
         
                
         
 # outer html zone
-
-
     
     def outhtmlheader(self):
         return u"论坛热帖"
     
     def outhtmlmore(self):
-        return "http://plone.315ok.org/"
-    
-            
-
-
+        return "http://plone.315ok.org/"           
     
     def dataparameter(self):
         data = {
@@ -191,6 +197,4 @@ class FrontpageView(baseview):
                 'index':0,   #fetch first block
                 'interval':24
                 }
-        return data
-        
-    
+        return data          

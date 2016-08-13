@@ -25,13 +25,13 @@ setup(name='xsgs.policy',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'my315ok.portlet.fetchouterhtml',
+#           'my315ok.portlet.fetchouterhtml',
           'my315ok.products',
           'collective.monkeypatcher',
           'z3c.jbot',
           'five.globalrequest',
           'five.grok',          
-          'collective.diazotheme.bootstrap',          
+#           'collective.diazotheme.bootstrap',          
           # -*- Extra requirements: -*-
       ],
       extras_require={
