@@ -48,33 +48,6 @@
          </div>         
        </div>       
      </div>
-     <div  class="container">
- <!-- FOOTER -->
-      <footer class="col-xs-12">
-        <p class="pull-right"><a href="#">返回顶部</a></p>
-        <p>&copy; 2013 湘水公司 &middot; <a href="http://www.miibeian.gov.cn/">湘ICP备07003419</a></p>
-      </footer>
-    </div>
-<div id="scripts">
-	<script type="text/javascript" src="http://images.315ok.org/ajaxfetchimg.min.js"></script>
-	<script  src="http://images.315ok.org/jquery.swfobj.min.js"></script>  
-	<script tal:content="structure python:view.outputjs()"></script>
-	<script>
-		$("#mobile-entry").mouseover(function(){
-  $("#sn-qrcode").show();
-}); 
-	$("#mobile-entry").mouseout(function(){
-  $("#sn-qrcode").hide();
-}); 
-		$("#follow-entry").mouseover(function(){
-  $("#follow-qrcode").show();
-}); 
-	$("#follow-entry").mouseout(function(){
-  $("#follow-qrcode").hide();
-}); 	
-	</script>
-	<script tal:content="structure python:view.swf_js_settings(swf='http://images.315ok.org/xsgs998/main.swf',height=223,width=1160)"></script>
-</div>
     </tal:main-macro>
 </metal:main>   
 </body>
