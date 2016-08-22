@@ -47,7 +47,7 @@
         />
     
   <browser:page
-        name="bootstrapbatchnavigation"
+        name="batchnavigation"
         for="*"
         permission="zope.Public"
         class="plone.batching.browser.PloneBatchView"
