@@ -2,6 +2,7 @@
            xmlns:browser="http://namespaces.zope.org/browser"              
            xmlns:five="http://namespaces.zope.org/five">           
 
+  <include file="caching.zcml" />
   <browser:page
       for="Products.CMFCore.interfaces.ISiteRoot"
       name="index.html"
