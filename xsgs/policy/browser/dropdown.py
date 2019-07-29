@@ -21,7 +21,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.memoize.ram import cache
 from plone.memoize.compress import xhtml_compress
 
-from xtshzz.policy.browser.interfaces import IDropdownMenuViewlet
+from xtcs.policy.browser.interfaces import IDropdownMenuViewlet
 
 
 class DropdownQueryBuilder(NavtreeQueryBuilder):
