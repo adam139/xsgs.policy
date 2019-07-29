@@ -2,8 +2,6 @@
 <metadata>
   <version>1000</version>
     <dependencies> 
-        <dependency>profile-my315ok.wechat:default</dependency>
         <dependency>profile-my315ok.products:default</dependency>
-        <dependency>profile-xsgs.theme:default</dependency>                         
-    </dependencies>  
+        <dependency>profile-xsgs.theme:default</dependency>                         </dependencies>  
 </metadata>
